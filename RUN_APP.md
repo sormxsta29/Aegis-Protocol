@@ -68,7 +68,16 @@ npx hardhat run scripts/deploy.js --network sepolia
 
 #### D. Connect Frontend to Testnet
 
-Update `frontend/src/config.js` with your deployed contract addresses.
+Create `frontend/.env` with wallet + API config:
+```env
+REACT_APP_WALLETCONNECT_PROJECT_ID=your_walletconnect_project_id
+REACT_APP_ALCHEMY_KEY=your_alchemy_api_key
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_WS_URL=ws://localhost:5000
+```
+
+Then update `frontend/src/config/constants.js` with your deployed contract addresses
+or set the `REACT_APP_*_ADDRESS` values in `frontend/.env`.
 
 ---
 
@@ -108,8 +117,8 @@ Update `frontend/src/config.js` with your deployed contract addresses.
 
 If you see Node.js version warnings, you have 2 options:
 
-**Option A: Use older Node.js version**
-- Install Node.js v18.x from: https://nodejs.org/
+**Option A: Use supported Node.js version**
+- Install Node.js v20.x (recommended) or v18.x from: https://nodejs.org/
 - Restart your computer
 - Try again
 

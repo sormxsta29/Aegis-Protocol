@@ -4,17 +4,15 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 
 /**
  * @title AegisBadges
  * @dev NFT badges for donors, volunteers, and disaster victims
  */
 contract AegisBadges is ERC721, ERC721URIStorage, AccessControl {
-    using Counters for Counters.Counter;
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    Counters.Counter private _tokenIds;
+    uint256 private _tokenIds;
 
     enum BadgeType {
         DONOR_BRONZE,
@@ -45,18 +43,18 @@ contract AegisBadges is ERC721, ERC721URIStorage, AccessControl {
     function mintBadge(
         address recipient,
         BadgeType badgeType,
-        string memory tokenURI
+        string memory tokenUri
     ) external onlyRole(MINTER_ROLE) returns (uint256) {
-        _tokenIds.increment();
-        uint256 newTokenId = _tokenIds.current();
+        _tokenIds += 1;
+        uint256 newTokenId = _tokenIds;
 
         _safeMint(recipient, newTokenId);
-        _setTokenURI(newTokenId, tokenURI);
+        _setTokenURI(newTokenId, tokenUri);
 
         badges[newTokenId] = Badge({
             badgeType: badgeType,
             timestamp: block.timestamp,
-            metadata: tokenURI
+            metadata: tokenUri
         });
 
         userBadges[recipient].push(newTokenId);

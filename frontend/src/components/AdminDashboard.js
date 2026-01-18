@@ -155,7 +155,7 @@ function AdminDashboard({ account, contract, tokenContracts }) {
     if (!contract) return;
 
     try {
-      const tx = await contract.distributeTokens(disasterId, ethers.utils.parseEther(amount));
+      const tx = await contract.distributeTokens(disasterId, ethers.parseEther(amount));
       await tx.wait();
       
       setRecentActions(prev => [{

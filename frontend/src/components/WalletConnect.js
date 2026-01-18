@@ -1,11 +1,10 @@
 import React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount, useDisconnect } from 'wagmi';
+import { useAccount } from 'wagmi';
 import './WalletConnect.css';
 
 export default function WalletConnect({ userType }) {
   const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
 
   return (
     <div className="wallet-connect">

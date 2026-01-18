@@ -3,6 +3,7 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
 
 /**
  * @title MetaTransactionRelay
@@ -71,7 +72,7 @@ contract MetaTransactionRelay is Ownable {
             abi.encodePacked(from, to, value, data, nonce, address(this))
         );
         
-        bytes32 ethSignedMessageHash = messageHash.toEthSignedMessageHash();
+        bytes32 ethSignedMessageHash = MessageHashUtils.toEthSignedMessageHash(messageHash);
         
         // Verify signature
         address signer = ethSignedMessageHash.recover(signature);
@@ -112,7 +113,7 @@ contract MetaTransactionRelay is Ownable {
             abi.encodePacked(from, to, value, data, nonce, address(this))
         );
         
-        bytes32 ethSignedMessageHash = messageHash.toEthSignedMessageHash();
+        bytes32 ethSignedMessageHash = MessageHashUtils.toEthSignedMessageHash(messageHash);
         address signer = ethSignedMessageHash.recover(signature);
         
         return signer == from;

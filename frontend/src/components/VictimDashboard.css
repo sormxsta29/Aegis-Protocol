@@ -186,6 +186,13 @@
 }
 
 /* Enhanced Token Cards */
+.token-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
 .token-card {
   position: relative;
   overflow: hidden;
@@ -261,6 +268,85 @@
 
 .token-chart {
   font-size: 1.2em;
+}
+
+/* Sample transaction */
+.sample-transaction {
+  margin: 24px 0;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.sample-transaction-note {
+  margin: 8px 0 16px;
+  color: #6b7280;
+}
+
+.tx-form {
+  display: grid;
+  gap: 12px;
+}
+
+.tx-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tx-label {
+  font-size: 0.9em;
+  color: #374151;
+  font-weight: 600;
+}
+
+.tx-input {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.95em;
+}
+
+.tx-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #374151;
+  font-size: 0.9em;
+}
+
+.tx-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tx-balance {
+  color: #6b7280;
+  font-size: 0.9em;
+}
+
+.tx-error {
+  margin-top: 12px;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.tx-hash,
+.tx-success {
+  margin-top: 12px;
+  color: #16a34a;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.tx-hash {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 /* Transaction List */
